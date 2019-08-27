@@ -62,6 +62,7 @@ module GooglePlaces
       exclude = options.delete(:exclude) || []
       retry_options = options.delete(:retry_options) || {}
       zagat_selected = options.delete(:zagat_selected) || false
+      sessiontoken = options.delete(:sessiontoken)
       exclude = [exclude] unless exclude.is_a?(Array)
 
       options = {
@@ -81,6 +82,10 @@ module GooglePlaces
       if types
         types = (types.is_a?(Array) ? types.join('|') : types)
         options.merge!(:types => types)
+      end
+
+      if sessiontoken
+        options[:sessiontoken] = sessiontoken
       end
 
       request(:spots, multipage_request, exclude, options)
@@ -133,6 +138,7 @@ module GooglePlaces
       exclude = options.delete(:exclude) || []
       retry_options = options.delete(:retry_options) || {}
       zagat_selected = options.delete(:zagat_selected) || false
+      sessiontoken = options.delete(:sessiontoken)
       exclude = [exclude] unless exclude.is_a?(Array)
 
 
@@ -149,6 +155,10 @@ module GooglePlaces
       if query
         query = (query.is_a?(Array) ? query.join('|') : query)
         options.merge!(:query => query)
+      end
+
+      if sessiontoken
+        options[:sessiontoken] = sessiontoken
       end
 
       request(:spots_by_bounds, multipage_request, exclude, options)
@@ -205,6 +215,7 @@ module GooglePlaces
       opennow = options.delete(:opennow) || false
       minprice = options.delete(:minprice) || false
       maxprice = options.delete(:maxprice) || false
+      sessiontoken = options.delete(:sessiontoken)
       exclude = []
 
       options = {
@@ -225,6 +236,10 @@ module GooglePlaces
       if types
         types = (types.is_a?(Array) ? types.join('|') : types)
         options.merge!(:types => types)
+      end
+
+      if sessiontoken
+        options[:sessiontoken] = sessiontoken
       end
 
       request(:spots_by_radar, multipage_request, exclude, options)
@@ -258,6 +273,7 @@ module GooglePlaces
       region = options.delete(:region)
       retry_options = options.delete(:retry_options) || {}
       extensions = options.delete(:review_summary) ? 'review_summary' : nil
+      sessiontoken = options.delete(:sessiontoken)
 
       request_options = {
         :placeid => place_id,
@@ -269,6 +285,10 @@ module GooglePlaces
       }
       request_options[:region] = region unless region.nil?
       response = Request.spot(request_options)
+
+      if sessiontoken
+        options[:sessiontoken] = sessiontoken
+      end
 
       self.new(response['result'], api_key)
     end
@@ -359,6 +379,7 @@ module GooglePlaces
       types = options.delete(:types)
       exclude = options.delete(:exclude) || []
       retry_options = options.delete(:retry_options) || {}
+      sessiontoken = options.delete(:sessiontoken)
 
       exclude = [exclude] unless exclude.is_a?(Array)
 
@@ -378,6 +399,10 @@ module GooglePlaces
       if types
         types = (types.is_a?(Array) ? types.join('|') : types)
         options.merge!(:types => types)
+      end
+
+      if sessiontoken
+        options[:sessiontoken] = sessiontoken
       end
 
       request(:spots_by_query, multipage_request, exclude, options)
