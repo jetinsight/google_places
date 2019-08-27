@@ -284,11 +284,11 @@ module GooglePlaces
         :fields => fields
       }
       request_options[:region] = region unless region.nil?
-      response = Request.spot(request_options)
-
       if sessiontoken
         options[:sessiontoken] = sessiontoken
       end
+
+      response = Request.spot(request_options)
 
       self.new(response['result'], api_key)
     end
