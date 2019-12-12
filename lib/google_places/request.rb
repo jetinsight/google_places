@@ -316,6 +316,7 @@ module GooglePlaces
       retry_options[:max]    ||= 0
       retry_options[:delay]  ||= 5
       retry_options[:status] = [retry_options[:status]] unless retry_options[:status].is_a?(Array)
+      pp "OPTIONS AS THEY MADE IT HERE:", options
       @response = self.class.get(url, :query => options, :follow_redirects => follow_redirects)
 
       return unless retry_options[:max] > 0 && retry_options[:status].include?(@response.parsed_response['status'])

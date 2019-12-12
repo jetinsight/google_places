@@ -45,6 +45,7 @@ module GooglePlaces
       types  = options.delete(:types)
       components = options.delete(:components)
       sessiontoken = options.delete(:sessiontoken)
+      strictbounds = options.delete(:strictbounds)
 
       options = {
         :input => input,
@@ -73,6 +74,10 @@ module GooglePlaces
 
       if sessiontoken
         options[:sessiontoken] = sessiontoken
+      end
+
+      if strictbounds
+        options[:strictbounds] = true
       end
 
       request(:predictions_by_input, options)

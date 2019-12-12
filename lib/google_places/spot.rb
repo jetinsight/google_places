@@ -274,6 +274,7 @@ module GooglePlaces
       retry_options = options.delete(:retry_options) || {}
       extensions = options.delete(:review_summary) ? 'review_summary' : nil
       sessiontoken = options.delete(:sessiontoken)
+      p "SESSION TOKEN IN FIND:", sessiontoken
 
       request_options = {
         :placeid => place_id,
@@ -287,6 +288,8 @@ module GooglePlaces
       if sessiontoken
         options[:sessiontoken] = sessiontoken
       end
+
+      pp "Request options:", request_options
 
       response = Request.spot(request_options)
 
