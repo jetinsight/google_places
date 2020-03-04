@@ -85,6 +85,7 @@ module GooglePlaces
     # @option options [Integer] :retry_options[:max] (0) the maximum retries
     # @option options [Integer] :retry_options[:delay] (5) the delay between each retry in seconds
     def self.spot(options = {})
+      pp 'SPOT OPTIONS:', spot
       request = new(DETAILS_URL, options)
       request.parsed_response
     end
